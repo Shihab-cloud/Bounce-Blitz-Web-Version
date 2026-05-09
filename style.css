@@ -1,42 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
 body {
-    background-color: #0a0a0a;
+    margin: 0;
+    overflow: hidden;
+    background-color: #05010a; /* Deep space purple */
+    font-family: 'Orbitron', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    color: #00ffcc;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden;
+    touch-action: none; /* Prevents mobile scrolling */
 }
 
-#game-container {
+/* The Synthwave Grid Background */
+body::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-image: 
+        linear-gradient(to right, rgba(255, 0, 85, 0.3) 1px, transparent 1px),
+        linear-gradient(to top, rgba(255, 0, 85, 0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: perspective(500px) rotateX(60deg);
+    transform-origin: bottom center;
+    z-index: -1;
+}
+
+#game-wrapper {
     position: relative;
-    text-align: center;
-}
-
-#score-board {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px #00ffcc;
+    width: 800px;
+    height: 600px;
+    max-width: 100vw;
+    max-height: 100vh;
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.2);
 }
 
 canvas {
-    border: 4px solid #00ffcc;
-    background: #111;
-    box-shadow: 0 0 20px #00ffcc;
-    cursor: none; /* Hide mouse over game */
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    cursor: none;
 }
 
-#message {
+#ui-layer {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3rem;
-    font-weight: bold;
-    text-shadow: 0 0 20px #ff0055;
-    color: #ff0055;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass through to buttons inside */
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+    background: rgba(5, 1, 10, 0.85); /* Dark overlay for menus */
+}
+
+.screen.active {
+    display: flex;
+}
+
+#hud {
+    background: transparent;
     pointer-events: none;
-    white-space: pre-wrap;
+    justify-content: flex-start;
+    padding-top: 20px;
+}
+
+#score-board {
+    font-size: 1.5rem;
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+h1 {
+    font-size: 4rem;
+    color: #ff0055;
+    text-shadow: 0 0 20px #ff0055;
+    margin-bottom: 50px;
+}
+
+h2 {
+    color: #00ffcc;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+.neon-btn {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #00ffcc;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 10px #00ffcc inset, 0 0 10px #00ffcc;
+    margin: 10px;
+    text-transform: uppercase;
+}
+
+.neon-btn:hover {
+    background: #00ffcc;
+    color: #000;
+    box-shadow: 0 0 30px #00ffcc inset, 0 0 30px #00ffcc;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .button-group { flex-direction: column; }
+    h1 { font-size: 2.5rem; }
 }

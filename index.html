@@ -2,15 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Pong</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neon Pong: Synthwave</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="game-container">
-        <div id="score-board">Score: <span id="score">0</span></div>
+    <div id="game-wrapper">
+        <!-- The Main Game Canvas -->
         <canvas id="pongCanvas"></canvas>
-        <div id="message"></div>
+
+        <!-- UI Overlay Layer -->
+        <div id="ui-layer">
+            
+            <!-- Screen 1: Start Screen -->
+            <div id="start-screen" class="screen active">
+                <h1 class="glitch" data-text="NEON PONG">NEON PONG</h1>
+                <button id="btn-start" class="neon-btn">START SYSTEM</button>
+            </div>
+
+            <!-- Screen 2: Mode Select -->
+            <div id="mode-screen" class="screen">
+                <h2>SELECT MODE</h2>
+                <div class="button-group">
+                    <button id="btn-single" class="neon-btn">SINGLE PLAYER (SURVIVAL)</button>
+                    <button id="btn-multi" class="neon-btn">MULTIPLAYER (VS)</button>
+                </div>
+                <div id="mobile-warning" style="display: none; color: #ff0055; margin-top: 15px; font-size: 0.9rem;">
+                    *Multiplayer is disabled on mobile devices.
+                </div>
+            </div>
+
+            <!-- In-Game HUD -->
+            <div id="hud" class="screen">
+                <div id="score-board">
+                    <span id="p1-score" style="display:none;">0</span> 
+                    Score: <span id="score">0</span> 
+                    | High: <span id="highScore">0</span>
+                </div>
+                <div id="message"></div>
+            </div>
+
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
